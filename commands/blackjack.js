@@ -243,7 +243,7 @@ function renderGame(game) {
 	return new EmbedBuilder()
 		.setColor(getEmbedColor(game))
 		.setTitle('Blackjack')
-		.setDescription(`Game Status: ${game.status}`+getMoneyInformation())
+		.setDescription(`Game Status: ${game.status}`+getMoneyInformation(game))
 		.setFields([
 			{name:'Dealer', value:dealerValue},
 			{name:'Your Hand', value:`${renderHand(game.playerHand)} (value: ${calculateHandValue(game.playerHand)})`},
