@@ -1,0 +1,16 @@
+{
+  "name": "tacklebot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neomoth",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "pagination.djs": "^4.0.17",
+    "sqlite3": "^5.1.7"
+  }
+}
