@@ -78,12 +78,12 @@ module.exports = {
 		if(args[1].toLowerCase() === 'all' || args[1].toLowerCase() === 'max'){
 			bet = money;
 		}
-		else bet = parseInt(args[1]);
+		else bet = Math.floor(parseInt(args[1]));
 		if(isNaN(bet)){
 			return await i.reply('You must provide a valid amount to bet.');
 		}
-		if(bet < 0){
-			return await i.reply('You cannot bet a negative amount.');
+		if(bet <= 0){
+			return await i.reply('You cannot bet below $1');
 		}
 		if(bet > 100000){
 			return await i.reply('You cannot bet more than $100,000.');
@@ -209,6 +209,7 @@ function getEmbedColor(game){
 		case 'win': return 0x00ff00
 		case 'blackjack': return 0x00ff00
 		case 'bust': return 0xff0000
+		case 'lose': return 0xff0000
 		case 'tie': return 0x00ffff
 	}
 	return 0xc4235e;
@@ -259,7 +260,7 @@ function playDealer(game) {
 	const dealerValue = calculateHandValue(game.dealerHand);
 	if (playerValue > dealerValue || dealerValue > 21) {
 		game.status = 'win';
-		game.i.client.sql.promise(game.i.client.sql.addMoney, game.i.author.id, game.bet*1.5);
+		game.i.client.sql.promise(game.i.client.sql.addMoney, game.i.author.id, Math.floor(game.bet*1.5));
 	} else if (playerValue === dealerValue) {
 		game.status = 'tie';
 		game.i.client.sql.promise(game.i.client.sql.addMoney, game.i.author.id, game.bet*1);
