@@ -150,7 +150,7 @@ async function sendGameMessage(message, game, playerId) {
 	});
 	game.message = gameMessage;
 
-	const filter = i => message.author.id === playerId;
+	const filter = i => i.user.id === playerId;
 	const collector = gameMessage.createMessageComponentCollector({ filter, time: 120000 });
 	collector.on('collect', async interaction=>{
 		if (interaction.customId === 'hit') {
