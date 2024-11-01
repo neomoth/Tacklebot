@@ -4,6 +4,7 @@ module.exports = {
 		description:'scavenge money becuase you\'re a broke ass mf',
 		usage:`]scavenge`,
 		aliases:['scav'],
+		restrict:true,
 	},
 	async execute(i){
 		await i.client.sql.promise(i.client.sql.addUser, i.author.id);

@@ -6,6 +6,7 @@ module.exports = {
 		description:'Displays your profile.',
 		usage:`]profile`,
 		aliases:['p'],
+		restrict:true,
 	},
 	async execute(i){
 		let sql = i.client.sql;

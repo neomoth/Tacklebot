@@ -62,7 +62,8 @@ module.exports = {
 		name: 'blackjack',
 		description: 'GAMBLING WOOOOOOOOO',
 		aliases: ['bj'],
-		usage: ']blackjack $bet'
+		usage: ']blackjack $bet',
+		restrict:true,
 	},
 	async execute(i, args) {
 		await i.client.sql.promise(i.client.sql.addUser, i.author.id);
