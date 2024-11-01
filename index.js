@@ -232,6 +232,21 @@ client.on(Events.GuildMemberUpdate, async (oldMember, newMember) => {
 	if (!await safetyCheck(newMember)) return;
 	let logEmbed = new EmbedBuilder();
 	logEmbed.setColor(altColor);
+	if(!oldMember.communicationDisabledUntil&&newMember.communicationDisabledUntil){
+		logEmbed.setTitle('Member muted');
+		logEmbed.setAuthor({name:oldMember.user.tag,iconURL:oldMember.user.displayAvatarURL()});
+		logEmbed.setDescription(`Timed out until ${newMember.communicationDisabledUntilTimestamp}`);
+		logEmbed.setTimestamp(Date.now());
+		logEmbed.setFooter({text:`User ID: ${oldMember.user.id}`});
+		await logChannel.send({embeds:[logEmbed]});
+	}
+	if(oldMember.communicationDisabledUntil&&!newMember.communicationDisabledUntil){
+		logEmbed.setTitle('Member unmuted');
+		logEmbed.setAuthor({name:oldMember.user.tag,iconURL:oldMember.user.displayAvatarURL()});
+		logEmbed.setTimestamp(Date.now());
+		logEmbed.setFooter({text:`User ID: ${oldMember.user.id}`});
+		await logChannel.send({embeds:[logEmbed]});
+	}
 	if(oldMember.nickname!=newMember.nickname){
 		if(oldMember.nickname==null) oldMember.nickname='(None)';
 		if(newMember.nickname==null) newMember.nickname='(None)';
