@@ -82,6 +82,12 @@ module.exports = {
 		if(isNaN(bet)){
 			return await i.reply('You must provide a valid amount to bet.');
 		}
+		if(bet < 0){
+			return await i.reply('You cannot bet a negative amount.');
+		}
+		if(bet > 100000){
+			return await i.reply('You cannot bet more than $100,000.');
+		}
 		if(money < bet){
 			return await i.reply(`You don't have enough money to bet. Current balance: $${money}`);
 		}
