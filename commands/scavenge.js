@@ -6,7 +6,7 @@ module.exports = {
 		aliases:['scav'],
 	},
 	async execute(i){
-
+		await i.client.sql.promise(i.client.sql.addUser, i.author.id);
 		const currentTimestamp = Date.now();
 		let {scavengeTimestamp} = await i.client.sql.promise(i.client.sql.getScavengeTimestamp, i.author.id);
 		const goalTimeDifference = 3 * 60 * 60 * 1000;
