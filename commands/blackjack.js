@@ -220,12 +220,30 @@ function getEmbedColor(game){
 	return 0xc4235e;
 }
 
+function getMoneyInformation(game){
+	if(game.status === 'playing'){
+		return ` | Betting $${game.bet}`;
+	}
+	else if (game.status === 'win'){
+		return ` | You won $${Math.floor(game.bet*1.5)}!`;
+	}
+	else if (game.status === 'blackjack'){
+		return ` | You won $${game.bet*2}!!!!`;
+	}
+	else if (game.status === 'lose'||game.status === 'bust'){
+		return ` | You lost $${game.bet}...`;
+	}
+	else{
+		return ` | You tied, you got your $${game.bet} back.`;
+	}
+}
+
 function renderGame(game) {
 	let dealerValue = game.status==='playing' ? `${renderHand([game.dealerHand[0], {rank: '❔', suit:'❔'}])} (value: ${calculateHandValue([game.dealerHand[0]])})` : `${renderHand(game.dealerHand)} (value: ${calculateHandValue(game.dealerHand)})`
 	return new EmbedBuilder()
 		.setColor(getEmbedColor(game))
 		.setTitle('Blackjack')
-		.setDescription(`Game Status: ${game.status}`)
+		.setDescription(`Game Status: ${game.status}`+getMoneyInformation())
 		.setFields([
 			{name:'Dealer', value:dealerValue},
 			{name:'Your Hand', value:`${renderHand(game.playerHand)} (value: ${calculateHandValue(game.playerHand)})`},
