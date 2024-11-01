@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const SQL = require('./sql');
 
-const client = new Client({intents:[GatewayIntentBits.Guilds,GatewayIntentBits.MessageContent,GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMessageReactions,GatewayIntentBits.GuildMembers],
+const client = new Client({intents:[GatewayIntentBits.GuildMessageReactions, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildModeration, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.Guilds,GatewayIntentBits.MessageContent,GatewayIntentBits.GuildMessages,GatewayIntentBits.GuildMessageReactions,GatewayIntentBits.GuildMembers],
 	partials:[Partials.Message, Partials.Channel, Partials.Reaction]});
 client.commands = new Collection();
 //client.slashCommands = new Collection();
