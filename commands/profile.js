@@ -9,7 +9,6 @@ module.exports = {
 	},
 	async execute(i){
 		let sql = i.client.sql;
-		console.log(await sql.promise(sql.getAllUsers));
 		await sql.promise(sql.addUser, i.author.id);
 		let money = await i.client.sql.promise(i.client.sql.getMoney, i.author.id)
 		let embed = new EmbedBuilder()

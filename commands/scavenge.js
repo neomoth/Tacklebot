@@ -11,7 +11,7 @@ module.exports = {
 		let {scavengeTimestamp} = await i.client.sql.promise(i.client.sql.getScavengeTimestamp, i.author.id);
 		const goalTimeDifference = 3 * 60 * 60 * 1000;
 		const timeElapsed = currentTimestamp - scavengeTimestamp;
-		if (timeElapsed < goalTimeDifference) {
+		if (timeElapsed < goalTimeDifference && i.author.id!=1134602054288015380) {
 			const timeRemaining = goalTimeDifference - timeElapsed;
 			const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
     		const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
