@@ -201,6 +201,11 @@ async function sendGameMessage(message, game, playerId) {
 			games.delete(playerId);
 		}
 	});
+
+	if (game.status !== 'playing'){
+		// delete game because it ended instantly
+		games.delete(playerId);
+	};
 }
 
 function getEmbedColor(game){
