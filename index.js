@@ -235,7 +235,7 @@ client.on(Events.GuildMemberUpdate, async (oldMember, newMember) => {
 	if(!oldMember.communicationDisabledUntil&&newMember.communicationDisabledUntil){
 		logEmbed.setTitle('Member muted');
 		logEmbed.setAuthor({name:oldMember.user.tag,iconURL:oldMember.user.displayAvatarURL()});
-		logEmbed.setDescription(`Timed out until ${newMember.communicationDisabledUntilTimestamp}`);
+		logEmbed.setDescription(`Timed out until <t:${newMember.communicationDisabledUntilTimestamp}:f>`);
 		logEmbed.setTimestamp(Date.now());
 		logEmbed.setFooter({text:`User ID: ${oldMember.user.id}`});
 		await logChannel.send({embeds:[logEmbed]});
