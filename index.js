@@ -215,7 +215,14 @@ client.on(Events.GuildMemberAdd, async (member) => {
 	logEmbed.setDescription(`<@${member.user.id}> - ${count}${suffix} member to join.\nJoined on ${member.joinedAt}\nMember created at ${member.user.createdAt}`);
 	logEmbed.setTimestamp(Date.now());
 	logEmbed.setFooter({text:`User ID: ${member.user.id}`});
-	await logChannel.send({embeds:[logEmbed]});
+	let msg = await logChannel.send({embeds:[logEmbed]});
+
+	if(member.user.createdAt - member.joinedAt <= 14 * 24 * 60 * 60 *1000){
+		await member.guild.channels.fetch();
+		let automodChannel = await member.guild.channels.cache.get('1301786987812094022');
+		if(!automodChannel) return;
+		await automodChannel.send(`<@&1300590342181228554> <@&1295636297775452160>\n<@${member.user.id}> has joined and account is less than 14 days old.\nJoined on ${member.joinedAt}\nMember created at ${member.user.createdAt}.\nJoin log: ${msg.url}`);
+	}
 });
 client.on(Events.GuildMemberRemove, async (member) => {
 	// if (!await safetyCheck(member)) return;
