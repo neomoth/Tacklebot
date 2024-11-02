@@ -217,7 +217,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
 	logEmbed.setFooter({text:`User ID: ${member.user.id}`});
 	let msg = await logChannel.send({embeds:[logEmbed]});
 
-	if(member.user.createdAt - member.joinedAt <= 14 * 24 * 60 * 60 *1000){
+	if(member.joinedAt - member.user.createdAt <= 14 * 24 * 60 * 60 *1000){
 		await member.guild.channels.fetch();
 		let automodChannel = await member.guild.channels.cache.get('1301786987812094022');
 		if(!automodChannel) return;
