@@ -167,6 +167,7 @@ async function safetyCheck(obj){
 
 client.on(Events.ClientReady,async()=>{
 	console.info('[INFO]: Tacklebot is online.');
+	client.user.setActivity("prefix is `]`");
 });
 
 
