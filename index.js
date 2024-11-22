@@ -268,7 +268,7 @@ client.on(Events.GuildMemberUpdate, async (oldMember, newMember) => {
 	if(oldMember.roles.cache.size!=newMember.roles.cache.size){
 		logEmbed.setTitle('Roles changed');
 		logEmbed.setAuthor({name:oldMember.user.tag,iconURL:oldMember.user.displayAvatarURL()});
-		let excludedRoles = ['1295625879535226922', '1296298827384360980'];
+		let excludedRoles = ['1295625879535226922', '1296298827384360980', '1309313095797178389'];
 		let newRoles = newMember.roles.cache.filter(r=>!oldMember.roles.cache.has(r.id) && !excludedRoles.includes(r.id));
 		let oldRoles = oldMember.roles.cache.filter(r=>!newMember.roles.cache.has(r.id) && !excludedRoles.includes(r.id));
 		if(newRoles.size>0) logEmbed.setDescription(`Roles added: ${newRoles.map(r=>`<@&${r.id}>`).join(', ')}`);
